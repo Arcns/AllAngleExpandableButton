@@ -18,8 +18,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntDef;
-import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +28,9 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
+
+import androidx.annotation.IntDef;
+import androidx.core.graphics.ColorUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -48,7 +49,7 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
     private Map<ButtonData, RectF> buttonRects;
     private ButtonEventListener buttonEventListener;
 
-    private static final int BUTTON_SHADOW_COLOR = 0xff000000;
+    private static final int BUTTON_SHADOW_COLOR = 0xff7014E2;
     private static final int BUTTON_SHADOW_ALPHA = 32;
 
     //default attribute values
@@ -407,7 +408,8 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
         ButtonData buttonData = buttonDatas.get(buttonIndex);
         if (down) {
             pressTmpColor = buttonData.getBackgroundColor();
-            buttonData.setBackgroundColor(getPressedColor(pressTmpColor));
+            if (pressTmpColor != getContext().getResources().getColor(android.R.color.transparent))
+                buttonData.setBackgroundColor(getPressedColor(pressTmpColor));
         } else {
             buttonData.setBackgroundColor(pressTmpColor);
         }
@@ -592,10 +594,9 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
     }
 
     private void drawShadow(Canvas canvas, Paint paint, ButtonData buttonData) {
-        if (buttonElevationPx <= 0) {
+        if (buttonElevationPx <= 0 || buttonData != getMainButtonData()) {
             return;
         }
-
         float left, top;
         Bitmap bitmap;
         if (buttonData.isMainButton()) {
