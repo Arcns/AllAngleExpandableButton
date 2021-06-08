@@ -159,7 +159,7 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
         buttonGapPx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebButtonGapDp, dp2px(context, DEFAULT_BUTTON_GAP_DP));
         mainButtonSizePx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebMainButtonSizeDp, dp2px(context, DEFAULT_BUTTON_MAIN_SIZE_DP));
         subButtonSizePx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebSubButtonSizeDp, dp2px(context, DEFAULT_BUTTON_SUB_SIZE_DP));
-        subButtonTextOffsetYSizeDp = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebSubButtonTextOffsetYSizeDp, dp2px(context, subButtonSizePx));
+        subButtonTextOffsetYSizeDp = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebSubButtonTextOffsetYSizeDp, subButtonSizePx);
         buttonElevationPx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebButtonElevation, dp2px(context, DEFAULT_BUTTON_ELEVATION_DP));
         buttonSideMarginPx = buttonElevationPx * 2;
         mainButtonTextSize = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebMainButtonTextSizeSp, sp2px(context, DEFAULT_BUTTON_TEXT_SIZE_SP));
