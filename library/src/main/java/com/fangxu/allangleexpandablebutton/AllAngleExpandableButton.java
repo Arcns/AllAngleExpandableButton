@@ -76,6 +76,7 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
     private int rotateAnimDuration;
     private int mainButtonSizePx;
     private int subButtonSizePx;
+    private int subButtonTextOffsetYSizeDp;
     private int mainButtonTextSize;
     private int subButtonTextSize;
     private int mainButtonTextColor;
@@ -158,6 +159,7 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
         buttonGapPx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebButtonGapDp, dp2px(context, DEFAULT_BUTTON_GAP_DP));
         mainButtonSizePx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebMainButtonSizeDp, dp2px(context, DEFAULT_BUTTON_MAIN_SIZE_DP));
         subButtonSizePx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebSubButtonSizeDp, dp2px(context, DEFAULT_BUTTON_SUB_SIZE_DP));
+        subButtonTextOffsetYSizeDp = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebSubButtonTextOffsetYSizeDp, dp2px(context, subButtonSizePx));
         buttonElevationPx = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebButtonElevation, dp2px(context, DEFAULT_BUTTON_ELEVATION_DP));
         buttonSideMarginPx = buttonElevationPx * 2;
         mainButtonTextSize = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebMainButtonTextSizeSp, sp2px(context, DEFAULT_BUTTON_TEXT_SIZE_SP));
@@ -640,6 +642,12 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
             int bottom = (int) rectF.bottom - dp2px(getContext(), buttonData.getIconPaddingDp());
             drawable.setBounds(left, top, right, bottom);
             drawable.draw(canvas);
+            if (buttonData.getTexts() == null || buttonData.getTexts().length == 0) return;
+            String[] texts = buttonData.getTexts();
+            int sizePx = buttonData.isMainButton() ? mainButtonTextSize : subButtonTextSize;
+            int textColor = buttonData.isMainButton() ? mainButtonTextColor : subButtonTextColor;
+            textPaint = getTextPaint(sizePx, textColor);
+            drawTexts(texts, canvas, rectF.centerX(), subButtonTextOffsetYSizeDp + rectF.centerY(), false);
         } else {
             if (buttonData.getTexts() == null) {
                 throw new IllegalArgumentException("iconData is false, text cannot be null");
@@ -648,20 +656,20 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
             int sizePx = buttonData.isMainButton() ? mainButtonTextSize : subButtonTextSize;
             int textColor = buttonData.isMainButton() ? mainButtonTextColor : subButtonTextColor;
             textPaint = getTextPaint(sizePx, textColor);
-            drawTexts(texts, canvas, rectF.centerX(), rectF.centerY());
+            drawTexts(texts, canvas, rectF.centerX(), rectF.centerY(), true);
         }
     }
 
     /**
      * draw texts in rows
      */
-    private void drawTexts(String[] strings, Canvas canvas, float x, float y) {
+    private void drawTexts(String[] strings, Canvas canvas, float x, float y, boolean isCenter) {
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
         float top = fontMetrics.top;
         float bottom = fontMetrics.bottom;
         int length = strings.length;
         float total = (length - 1) * (-top + bottom) + (-fontMetrics.ascent + fontMetrics.descent);
-        float offset = total / 2 - bottom;
+        float offset = isCenter ? total / 2 - bottom : 0;
         for (int i = 0; i < length; i++) {
             float yAxis = -(length - i - 1) * (-top + bottom) + offset;
             canvas.drawText(strings[i], x, y + yAxis, textPaint);

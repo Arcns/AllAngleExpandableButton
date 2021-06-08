@@ -77,6 +77,7 @@ public class MainActivity extends Activity {
                 buttonData = ButtonData.buildIconButton(this, drawable[i], 15);
             } else {
                 buttonData = ButtonData.buildIconButton(this, drawable[i], 0);
+                buttonData.setText("test");
             }
             buttonData.setBackgroundColorId(this, color[i]);
             buttonDatas.add(buttonData);

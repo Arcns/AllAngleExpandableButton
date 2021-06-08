@@ -4,6 +4,7 @@
     <declare-styleable name="AllAngleExpandableButton">
         <attr name="aebMainButtonSizeDp" format="dimension|reference" />
         <attr name="aebSubButtonSizeDp" format="dimension|reference" />
+        <attr name="aebSubButtonTextOffsetYSizeDp" format="dimension|reference" />
         <attr name="aebButtonGapDp" format="dimension|reference" />
         <attr name="aebStartAngleDegree" format="integer|reference" />
         <attr name="aebEndAngleDegree" format="integer|reference" />
@@ -16,11 +17,11 @@
         <attr name="aebMainButtonTextSizeSp" format="dimension|reference" />
         <attr name="aebSubButtonTextSizeSp" format="dimension|reference" />
         <attr name="aebRippleEffect" format="boolean" />
-        <attr name="aebRippleColor" format="color|reference"/>
-        <attr name="aebMainButtonRotateDegree" format="integer|reference"/>
-        <attr name="aebMainButtonRotateAnimDurationMillis" format="integer|reference"/>
+        <attr name="aebRippleColor" format="color|reference" />
+        <attr name="aebMainButtonRotateDegree" format="integer|reference" />
+        <attr name="aebMainButtonRotateAnimDurationMillis" format="integer|reference" />
         <attr name="aebBlurBackground" format="boolean" />
-        <attr name="aebBlurRadius" format="float|reference"/>
+        <attr name="aebBlurRadius" format="float|reference" />
     </declare-styleable>
 
 </resources>
