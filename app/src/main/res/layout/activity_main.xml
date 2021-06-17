@@ -29,6 +29,7 @@
                 app:aebButtonGapDp="95dp"
                 app:aebEndAngleDegree="250"
                 app:aebIsSelectionMode="false"
+                app:aebMainButtonShadowColor="?colorPrimary"
                 app:aebMainButtonSizeDp="45dp"
                 app:aebRippleEffect="true"
                 app:aebStartAngleDegree="110"
