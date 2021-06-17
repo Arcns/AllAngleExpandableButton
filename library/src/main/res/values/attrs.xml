@@ -22,6 +22,7 @@
         <attr name="aebMainButtonRotateAnimDurationMillis" format="integer|reference" />
         <attr name="aebBlurBackground" format="boolean" />
         <attr name="aebBlurRadius" format="float|reference" />
+        <attr name="aebMainButtonShadowColor" format="color|reference" />
     </declare-styleable>
 
 </resources>

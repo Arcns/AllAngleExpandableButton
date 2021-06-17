@@ -49,7 +49,7 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
     private Map<ButtonData, RectF> buttonRects;
     private ButtonEventListener buttonEventListener;
 
-    private static final int BUTTON_SHADOW_COLOR = 0xff7014E2;
+    private int buttonShadowColor;
     private static final int BUTTON_SHADOW_ALPHA = 32;
 
     //default attribute values
@@ -166,6 +166,8 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
         subButtonTextSize = ta.getDimensionPixelSize(R.styleable.AllAngleExpandableButton_aebSubButtonTextSizeSp, sp2px(context, DEFAULT_BUTTON_TEXT_SIZE_SP));
         mainButtonTextColor = ta.getColor(R.styleable.AllAngleExpandableButton_aebMainButtonTextColor, DEFAULT_BUTTON_TEXT_COLOR);
         subButtonTextColor = ta.getColor(R.styleable.AllAngleExpandableButton_aebSubButtonTextColor, DEFAULT_BUTTON_TEXT_COLOR);
+
+        buttonShadowColor = ta.getColor(R.styleable.AllAngleExpandableButton_aebMainButtonShadowColor, Color.BLACK);
 
         expandAnimDuration = ta.getInteger(R.styleable.AllAngleExpandableButton_aebAnimDurationMillis, DEFAULT_EXPAND_ANIMATE_DURATION);
         rotateAnimDuration = ta.getInteger(R.styleable.AllAngleExpandableButton_aebMainButtonRotateAnimDurationMillis, DEFAULT_ROTATE_ANIMATE_DURATION);
@@ -714,8 +716,8 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
         int bitmapSize = bitmapRadius * 2;
         Bitmap bitmap = Bitmap.createBitmap(bitmapSize, bitmapSize, Bitmap.Config.ARGB_8888);
         bitmap.eraseColor(0x0);
-        int colors[] = {ColorUtils.setAlphaComponent(BUTTON_SHADOW_COLOR, BUTTON_SHADOW_ALPHA),
-                ColorUtils.setAlphaComponent(BUTTON_SHADOW_COLOR, 0)};
+        int colors[] = {ColorUtils.setAlphaComponent(buttonShadowColor, BUTTON_SHADOW_ALPHA),
+                ColorUtils.setAlphaComponent(buttonShadowColor, 0)};
         float stops[] = {(float) (buttonRadius - buttonElevationPx) / (float) bitmapRadius, 1};
         Paint paint = new Paint();
         paint.setAntiAlias(true);
